@@ -31,4 +31,10 @@ public class HomePage {
         clickElement("Store");
         return new Store(driver);
     }
+    //5. Click Shop Now
+    public StorePage ClickShopNow(){
+        clickElement("Store");
+        return new StorePage(driver);
+    }
+
 }
