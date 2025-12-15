@@ -11,7 +11,7 @@ public class HomePage {
     }
     //1. Helper method to click
     private void clickElement(String element){
-        driver.findElement(By.linkText(element)).click();
+        driver.findElement(By.partialLinkText(element)).click();
     }
 
     //2. Method to click Account link
@@ -20,4 +20,15 @@ public class HomePage {
         return new AccountManagerPage(driver);
     }
 
+    //3. click AskOmDch
+    public HomePageNavigation clickNavigation(){
+        clickElement("AskOmDch");
+        return new HomePageNavigation(driver);
+    }
+
+    //4. click Store
+    public Store clickStore(){
+        clickElement("Store");
+        return new Store(driver);
+    }
 }

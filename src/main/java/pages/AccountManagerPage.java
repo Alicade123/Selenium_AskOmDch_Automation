@@ -26,4 +26,19 @@ public class AccountManagerPage {
         return driver.findElement(statusText).getText();
     }
 
+        private By reg_usernamefield = By.id("reg_username");
+        private By reg_emailField = By.id("reg_email");
+        private By reg_passwordField = By.id("reg_password");
+        private By reg_submitButton = By.name("register");
+
+    public String setCredentialsRegister(String username, String email, String password){
+        driver.findElement(reg_usernamefield).sendKeys(username);
+        driver.findElement(reg_emailField).sendKeys(email);
+        driver.findElement(reg_passwordField).sendKeys(password);
+        driver.findElement(reg_submitButton).click();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(statusText)));
+        return driver.findElement(statusText).getText();
+    }
+
 }
