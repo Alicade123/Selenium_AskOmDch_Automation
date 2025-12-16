@@ -10,7 +10,7 @@ public class CartPage {
         this.driver = driver;
     }
 public CheckoutPage clickCheckoutButton(){
-        driver.findElements(checkoutButton).click();
+        driver.findElement(checkoutButton).click();
         return new CheckoutPage(driver);
 }
 

@@ -16,6 +16,7 @@ public class AccountManagerPage {
     private By statusText = By.cssSelector(".woocommerce-MyAccount-content p");
     public AccountManagerPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
     public String  setCredentials(String username , String passcode){
         driver.findElement(usernameField).sendKeys(username);
@@ -39,6 +40,13 @@ public class AccountManagerPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(statusText)));
         return driver.findElement(statusText).getText();
+    }
+    private By logoutLink = By.partialLinkText("Log out");
+    private By loginButton = By.name("login");
+    public boolean logout(){
+        driver.findElement(logoutLink).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(loginButton)));
+        return  driver.findElement(loginButton).isDisplayed();
     }
 
 }

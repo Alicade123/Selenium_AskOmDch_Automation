@@ -37,4 +37,11 @@ public class HomePage {
         return new StorePage(driver);
     }
 
+    //5. Click Shop Now
+    public AboutPage ClickAbout(){
+        clickElement("About");
+        return new AboutPage(driver);
+    }
+
+
 }

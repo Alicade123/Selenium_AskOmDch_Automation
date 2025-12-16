@@ -1,4 +1,11 @@
 package followus;
 
-public class WindowsTests {
+import base.BaseTests;
+import org.testng.annotations.Test;
+
+public class WindowsTests extends BaseTests {
+    @Test
+    public void testTabs(){
+
+    }
 }
