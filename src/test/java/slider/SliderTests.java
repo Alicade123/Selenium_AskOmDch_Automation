@@ -1,0 +1,24 @@
+package slider;
+
+import base.BaseTests;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
+
+public class SliderTests extends BaseTests {
+    @Test
+    public  void priceSliderTest(){
+        var storePage = homePage.goToStore();
+        int [] priceRange = storePage.slider(50, -50);
+        System.out.println(priceRange[0]+" - "+priceRange[1]);
+        assertTrue(priceRange[0]<=priceRange[1],"Alicade 🫵🏿 you messed up all the things 💀");
+    }
+
+    @Test
+    public  void priceSliderTestJS(){
+        var storePage = homePage.goToStore();
+        int [] priceRange = storePage.sliderJs(50, 110);
+        System.out.println(priceRange[0]+" - "+priceRange[1]);
+        assertTrue(priceRange[0]<=priceRange[1],"Alicade 🫵🏿 you messed up all the things 💀");
+    }
+}
