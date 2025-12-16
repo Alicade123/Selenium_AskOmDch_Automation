@@ -23,7 +23,6 @@ public class Store {
     }
 
     private By dropdownField = By.id("product_cat");
-
     public void browserProductCategory(String category){
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block:'center'});", driver.findElement(dropdownField));
         Select select = new Select(driver.findElement(dropdownField));

@@ -18,15 +18,7 @@ public class StorePage {
     this.driver = driver;
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-//    public CartPage  variousNumberOfItemsToCart(int... quantities){
-//        for(int quantity : quantities){
-//            driver.findElements(addToCartButton).get(quantity).click();
-//        }
-//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(cartLink)));
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(cartLink));
-//        driver.findElement(cartLink).click();
-//        return new CartPage(driver);
-//        }
+
 public CartPage variousNumberOfItemsToCart(int... indexes) {
     for (int index : indexes) {
         // Re-locate buttons every time

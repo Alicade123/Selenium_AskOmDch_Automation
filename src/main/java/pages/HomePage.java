@@ -37,10 +37,19 @@ public class HomePage {
         return new StorePage(driver);
     }
 
-    //5. Click Shop Now
-    public AboutPage ClickAbout(){
+    //6. Click Shop Now
+    public AboutPage clickAbout(){
         clickElement("About");
         return new AboutPage(driver);
+    }
+    //7. Click Shop Now
+    public FooterLinks clickFooter(){
+        return new FooterLinks(driver);
+    }
+    //8. Click Shop Now
+    public StorePageSlider goToStore(){
+        clickElement("Store");
+        return new StorePageSlider(driver);
     }
 
 
