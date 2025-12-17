@@ -26,14 +26,14 @@ public class HomePage {
         return new HomePageNavigation(driver);
     }
 
-    //4. click Store
-    public Store clickStore(){
-        clickElement("Store");
-        return new Store(driver);
+    //4. click StoreCategoryBrowser
+    public StoreCategoryBrowser clickStore(){
+        clickElement("SHOP NOW");
+        return new StoreCategoryBrowser(driver);
     }
     //5. Click Shop Now
     public StorePage ClickShopNow(){
-        clickElement("Store");
+        clickElement("SHOP NOW");
         return new StorePage(driver);
     }
 
@@ -48,8 +48,13 @@ public class HomePage {
     }
     //8. Click Shop Now
     public StorePageSlider goToStore(){
-        clickElement("Store");
+        clickElement("SHOP NOW");
         return new StorePageSlider(driver);
+    }
+    //8. go to store page for searching
+    public StorePageSearch goToStoreToSearch(){
+        clickElement("SHOP NOW");
+        return new StorePageSearch(driver);
     }
 
 

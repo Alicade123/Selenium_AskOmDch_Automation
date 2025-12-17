@@ -17,7 +17,7 @@ public class HomePageNavigation {
     }
     private By askOmDch = By.partialLinkText("AskOmDch");
     private By home = By.partialLinkText("Home");
-    private By store = By.partialLinkText("Store");
+    private By store = By.partialLinkText("StoreCategoryBrowser");
     private By men = By.partialLinkText("Men");
     private By women = By.partialLinkText("Women");
     private By accessories = By.partialLinkText("Accessories");
