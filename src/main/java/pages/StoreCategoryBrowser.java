@@ -17,9 +17,10 @@ public class Store {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    public void sortProducts(String sortingRule){
+    public String sortProducts(String sortingRule){
         Select select=new Select(driver.findElement(orderbyField));
         select.selectByValue(sortingRule);
+        return driver.getCurrentUrl();
     }
 
     private By dropdownField = By.id("product_cat");
@@ -27,5 +28,6 @@ public class Store {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block:'center'});", driver.findElement(dropdownField));
         Select select = new Select(driver.findElement(dropdownField));
         select.selectByContainsVisibleText(category);
+//        select.selectByValue(category);
     }
 }
