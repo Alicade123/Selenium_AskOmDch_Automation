@@ -20,7 +20,7 @@ public class NavigationTests extends BaseTests {
         String expectedResultHome = "AskOmDch – Become a Selenium automation expert!";
         assertEquals(actualResultHome, expectedResultHome, "Something went wrong Alicade!");
 
-        //Store
+        //StoreCategoryBrowser
         String actualResultStore = navigationTestPage.clickStore();
         String expectedResultStore = "Products – AskOmDch";
         assertEquals(actualResultStore, expectedResultStore, "Something went wrong Alicade!");
