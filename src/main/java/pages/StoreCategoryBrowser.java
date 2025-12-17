@@ -8,11 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Store {
+public class StoreCategoryBrowser {
     protected WebDriver driver;
     private WebDriverWait wait;
     private By orderbyField = By.name("orderby");
-    public Store(WebDriver driver) {
+    public StoreCategoryBrowser(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
@@ -28,6 +28,6 @@ public class Store {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block:'center'});", driver.findElement(dropdownField));
         Select select = new Select(driver.findElement(dropdownField));
         select.selectByContainsVisibleText(category);
-//        select.selectByValue(category);
+//
     }
 }

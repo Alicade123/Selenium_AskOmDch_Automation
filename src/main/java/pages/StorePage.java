@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class StorePage {
     protected WebDriver driver;
@@ -19,19 +20,30 @@ public class StorePage {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-public CartPage variousNumberOfItemsToCart(int... indexes) {
-    for (int index : indexes) {
-        // Re-locate buttons every time
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(addToCartButton, index));
-        driver.findElements(addToCartButton).get(index).click();
-        // Optional: wait for AJAX add-to-cart to finish
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.added_to_cart")));
-    }
-    wait.until(ExpectedConditions.elementToBeClickable(cartLink));
-    WebElement cart = driver.findElement(cartLink);
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cart);
-    cart.click();
-    return new CartPage(driver);
+public CartPage variousNumberOfItemsToCart(int... items) {
+        List<WebElement> availableItems = driver.findElements(addToCartButton);
+        if(items.length == 0) {
+            WebElement cart = driver.findElement(cartLink);
+            wait.until(ExpectedConditions.elementToBeClickable(cartLink));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cart);
+            cart.click();
+            return new CartPage(driver);
+        }
+        else if(items.length>0 && items.length<=availableItems.size()){
+            for (int item : items) {
+                wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(addToCartButton, item));
+                driver.findElements(addToCartButton).get(item).click();
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.added_to_cart")));
+            }
+                wait.until(ExpectedConditions.elementToBeClickable(cartLink));
+                WebElement cart = driver.findElement(cartLink);
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cart);
+                cart.click();
+                return new CartPage(driver);
+            }
+        else if(availableItems.size()<items.length){
+                System.out.println(availableItems.size());
+            }
+    return null;
 }
-
 }
