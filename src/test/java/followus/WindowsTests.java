@@ -10,7 +10,7 @@ public class WindowsTests extends BaseTests {
         String UdemyTitle = "Omprakash Chavan | Test Automation Lead | Udemy";
         String linkedInTitle  = "Sign Up | LinkedIn";
         String youTubeTitle  = "askomdch - YouTube";
-        var  aboutPage= homePage.ClickAbout();
+        var  aboutPage= homePage.clickAbout();
         aboutPage.clickSocialMediaLink();
     }
 }

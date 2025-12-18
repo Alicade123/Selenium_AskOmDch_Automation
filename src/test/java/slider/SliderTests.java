@@ -17,8 +17,6 @@ public class SliderTests extends BaseTests {
     @Test
     public  void priceSliderTestJS(){
         var storePage = homePage.goToStore();
-        int [] priceRange = storePage.sliderJs(50, 110);
-        System.out.println(priceRange[0]+" - "+priceRange[1]);
-        assertTrue(priceRange[0]<=priceRange[1],"Alicade 🫵🏿 you messed up all the things 💀");
+        assertTrue(storePage.sliderJs(100,10),"Alicade 🫵🏿 you messed up all the things 💀");
     }
 }

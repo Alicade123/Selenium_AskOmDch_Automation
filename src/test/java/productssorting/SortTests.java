@@ -2,6 +2,9 @@ package productssorting;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import static org.testng.Assert.assertTrue;
 
 public class SortTests extends BaseTests {
     //Todo:Sorting Parameters
@@ -46,7 +49,27 @@ public class SortTests extends BaseTests {
     public void testPriceH_LSorting(){
         var storePage = homePage.clickStore();
         String sortingRule ="price-desc";
-        storePage.sortProducts(sortingRule);
+        String actualResultPageUrl = storePage.sortProducts(sortingRule);
+        System.out.println(actualResultPageUrl);
+        assertTrue(actualResultPageUrl.endsWith(sortingRule));
+    }
+    @Test
+    public void testAllSortingRulesAtOnce(){
+
+        String rule1 = "menu_order";
+        String rule2 = "popularity";
+        String rule3 =  "rating";
+        String rule4 = "date";
+        String rule5  ="price";
+        String rule6   ="price-desc";
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule1).endsWith(rule1));
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule2).endsWith(rule2));
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule3).endsWith(rule3));
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule4).endsWith(rule4));
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule5).endsWith(rule5));
+        softAssert.assertTrue(homePage.clickStore().sortProducts(rule6).endsWith(rule6));
+        softAssert.assertAll();
     }
 
 }
