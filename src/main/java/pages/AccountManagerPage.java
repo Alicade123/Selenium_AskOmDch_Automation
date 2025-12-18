@@ -10,27 +10,19 @@ import java.time.Duration;
 public class AccountManagerPage {
     protected  WebDriver driver;
     private WebDriverWait wait;
-    private By  usernameField = By.id("username");
-    private By passwordField  = By.id("password");
-    private By submitButton = By.name("login");
     private By statusText = By.cssSelector(".woocommerce-MyAccount-content p");
     public AccountManagerPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-    public String  setCredentials(String username , String passcode){
-        driver.findElement(usernameField).sendKeys(username);
-        driver.findElement(passwordField).sendKeys(passcode);
-        driver.findElement(submitButton).click();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(statusText)));
-        return driver.findElement(statusText).getText();
-    }
 
-        private By reg_usernamefield = By.id("reg_username");
-        private By reg_emailField = By.id("reg_email");
-        private By reg_passwordField = By.id("reg_password");
-        private By reg_submitButton = By.name("register");
+
+    //ToDo:User Registration
+    private By reg_usernamefield = By.id("reg_username");
+    private By reg_emailField = By.id("reg_email");
+    private By reg_passwordField = By.id("reg_password");
+    private By reg_submitButton = By.name("register");
+    private By errorText = By.cssSelector("ul[role=alert]");
 
     public String setCredentialsRegister(String username, String email, String password){
         driver.findElement(reg_usernamefield).sendKeys(username);
@@ -41,6 +33,40 @@ public class AccountManagerPage {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(statusText)));
         return driver.findElement(statusText).getText();
     }
+
+    public String setCredentialsRegisterWithExistingUser(String username, String email, String password){
+        driver.findElement(reg_usernamefield).sendKeys(username);
+        driver.findElement(reg_emailField).sendKeys(email);
+        driver.findElement(reg_passwordField).sendKeys(password);
+        driver.findElement(reg_submitButton).click();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(errorText)));
+        return driver.findElement(errorText).getText();
+    }
+    //ToDo: User Login
+    private By  usernameField = By.id("username");
+    private By passwordField  = By.id("password");
+    private By submitButton = By.name("login");
+
+    public String  setCredentials(String username , String passcode){
+        driver.findElement(usernameField).sendKeys(username);
+        driver.findElement(passwordField).sendKeys(passcode);
+        driver.findElement(submitButton).click();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(statusText)));
+        return driver.findElement(statusText).getText();
+    }
+
+    public String  setCredentialsForUnregisterdUser(String username , String passcode){
+        driver.findElement(usernameField).sendKeys(username);
+        driver.findElement(passwordField).sendKeys(passcode);
+        driver.findElement(submitButton).click();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(errorText)));
+        return driver.findElement(errorText).getText();
+    }
+
+//ToDo : Logout
     private By logoutLink = By.partialLinkText("Log out");
     private By loginButton = By.name("login");
     public boolean logout(){
