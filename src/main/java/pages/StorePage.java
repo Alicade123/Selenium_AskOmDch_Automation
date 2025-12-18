@@ -23,6 +23,7 @@ public class StorePage {
 public CartPage variousNumberOfItemsToCart(int... items) {
         List<WebElement> availableItems = driver.findElements(addToCartButton);
         if(items.length == 0) {
+            //ToDo: Attempting to shop with empty cart
             WebElement cart = driver.findElement(cartLink);
             wait.until(ExpectedConditions.elementToBeClickable(cartLink));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cart);
@@ -42,6 +43,7 @@ public CartPage variousNumberOfItemsToCart(int... items) {
                 return new CartPage(driver);
             }
         else if(availableItems.size()<items.length){
+            //Todo: test attempting to shop more than available products
                 System.out.println(availableItems.size());
             }
     return null;
