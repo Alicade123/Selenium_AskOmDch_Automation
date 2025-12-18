@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,10 +25,11 @@ public class StoreCategoryBrowser {
     }
 
     private By dropdownField = By.id("product_cat");
-    public void browserProductCategory(String category){
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block:'center'});", driver.findElement(dropdownField));
-        Select select = new Select(driver.findElement(dropdownField));
-        select.selectByContainsVisibleText(category);
-//
-    }
+    public ChosenCategoryPage browserProductCategory(String category){
+        WebElement dropdown = driver.findElement(dropdownField);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block:'center'});", dropdown);
+        Select select = new Select(dropdown);
+        select.selectByValue(category);
+        return new ChosenCategoryPage(driver);
+        }
 }
