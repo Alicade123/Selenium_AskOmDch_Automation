@@ -9,16 +9,6 @@ public class BaseTests {
     protected WebDriver driver;
     private String websteUrl ="https://askomdch.com/";
     protected HomePage homePage;
-//@BeforeSuite
-//@BeforeClass
-//@BeforeGroups
-//@BeforeMethod
-//@BeforeTest
-//@AfterSuite
-//@AfterClass
-//@AfterGroups
-//@AfterMethod
-//@AfterTest
     @BeforeClass
     public void setUp(){
         driver = new ChromeDriver();

@@ -7,16 +7,6 @@ import static org.testng.Assert.assertTrue;
 
 
 public class TestDropdownCategories extends BaseTests {
-    // Option 1: value="accessories" -> Accessories  (3)
-    // Option 2: value="mens-jeans" -> Men’s Jeans  (4)
-    // Option 3: value="mens-shirts" -> Men’s Shirts  (1)
-    // Option 4: value="mens-shoes" -> Men’s Shoes  (1)
-    // Option 5: value="purses-and-handbags" -> Purses And Handbags  (1)
-    // Option 6: value="women" -> Women  (7)
-    // Option 7: value="womens-jeans" -> Women’s Jeans  (2)
-    // Option 8: value="womens-shirts" -> Women’s Shirts  (1)
-    // Option 9: value="womens-shoes" -> Women’s Shoes  (1)
-    // Option 10: value="men" -> Men  (7)
     @Test
     public void testBrowseMenJeansCategory() {
         String categoryValue = "mens-jeans";
