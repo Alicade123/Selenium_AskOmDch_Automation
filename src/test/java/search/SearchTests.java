@@ -14,11 +14,16 @@ import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.testng.Assert.assertTrue;
+
+//import static org.testng.AssertJUnit.assertEquals;
+//import static org.testng.AssertJUnit.assertTrue;
+
 
 public class SearchTests extends BaseTests {
     private static final Logger log = LoggerFactory.getLogger(SearchTests.class);
 
-    @AfterMethod
+//    @AfterMethod
     public void takeScreenShot(ITestResult result) {
 
         TakesScreenshot screenshot = (TakesScreenshot) driver;
@@ -54,7 +59,16 @@ public class SearchTests extends BaseTests {
     @Test
     public void testMultipleKeywordsSearch(){
         String searchKeyword = "blue Blue";
-        homePage.goToStoreToSearch().doSearch(searchKeyword);
+       boolean actualResult =  homePage.goToStoreToSearch().doSearch(searchKeyword);
+       assertTrue(actualResult,"Something else happened which is different from expected one");
+    }
+
+    @Test
+    public void testSearchingNonsense(){
+        String searchKeyword = "yewiuyruieyiurywquiyeuiyqiuyeruiqyhrui";
+//        String actualResult  = homePage.goToStoreToSearch().doSearch(searchKeyword);
+        String expectedResult = "No products were found matching your selection.";
+//        assertEquals("Something went wrong", expectedResult, actualResult);
     }
 
 }
