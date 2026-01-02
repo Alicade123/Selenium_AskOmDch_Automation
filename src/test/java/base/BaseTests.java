@@ -1,9 +1,16 @@
 package base;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class BaseTests {
     protected WebDriver driver;
@@ -20,6 +27,24 @@ public class BaseTests {
     public void tearDown(){
 //        driver.quit();
     }
-
+@AfterMethod
+    public void takeScreenshot(ITestResult result){
+        TakesScreenshot camera = ((TakesScreenshot)driver);
+        if(result.getStatus()==ITestResult.FAILURE){
+            try {
+                File file = camera.getScreenshotAs(OutputType.FILE);
+                Files.move(file.toPath(), new File("resources/failed/image.png").toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }}
+            else if(result.getStatus()==ITestResult.SUCCESS){
+                try {
+                    File file = camera.getScreenshotAs(OutputType.FILE);
+                    Files.move(file.toPath(), new File("resources/passed/image.png").toPath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+    }
 
 }
