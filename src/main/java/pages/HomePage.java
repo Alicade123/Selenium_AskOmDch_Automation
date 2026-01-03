@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+import java.util.Set;
 
 public class HomePage {
     protected WebDriver driver;
@@ -57,5 +61,26 @@ public class HomePage {
         return new StorePageSearch(driver);
     }
 
+    //9. AOD on Mobile
+    private By stores = By.cssSelector("a[target='_blank']");
+    String appStoreTitle = "App Store - Apple (IN)";
+    String androidAppStoreTitle = "Android Apps on Google Play";
+     public void clickAOD(){
+         List<WebElement> storeElements = driver.findElements(stores);
+         for(WebElement element : storeElements){
+             element.click();
+         }
+         Set<String> windows = driver.getWindowHandles();
+         System.out.println("List of all window handles");
+         windows.forEach(System.out::println);
+         System.out.println("\n");
+         for (String window : windows){
+             driver.switchTo().window(window);
+             if(driver.getTitle().equals(androidAppStoreTitle)) {
+                 System.out.println("We've got the right window: "+driver.getTitle());
+                 break;
+             }
+         }
+     }
 
 }
