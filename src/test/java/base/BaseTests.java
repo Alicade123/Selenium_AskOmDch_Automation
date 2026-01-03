@@ -11,6 +11,10 @@ import pages.HomePage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class BaseTests {
     protected WebDriver driver;
@@ -30,21 +34,23 @@ public class BaseTests {
 @AfterMethod
     public void takeScreenshot(ITestResult result){
         TakesScreenshot camera = ((TakesScreenshot)driver);
+        LocalDateTime time = LocalDateTime.now();
         if(result.getStatus()==ITestResult.FAILURE){
             try {
                 File file = camera.getScreenshotAs(OutputType.FILE);
-                Files.move(file.toPath(), new File("resources/failed/image.png").toPath());
+                Files.move(file.toPath(), new File("resources/failed/img"+time+"_.png").toPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }}
             else if(result.getStatus()==ITestResult.SUCCESS){
                 try {
                     File file = camera.getScreenshotAs(OutputType.FILE);
-                    Files.move(file.toPath(), new File("resources/passed/image.png").toPath());
+                    Files.move(file.toPath(), new File("resources/passed/img"+time+"_.png").toPath());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
     }
+
 
 }
