@@ -31,26 +31,36 @@ public class BaseTests {
     public void tearDown(){
 //        driver.quit();
     }
-@AfterMethod
+//@AfterMethod
     public void takeScreenshot(ITestResult result){
         TakesScreenshot camera = ((TakesScreenshot)driver);
+        //Todo: Time
         LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+        String timeFormatted = time.format(formatter);
         if(result.getStatus()==ITestResult.FAILURE){
             try {
                 File file = camera.getScreenshotAs(OutputType.FILE);
-                Files.move(file.toPath(), new File("resources/failed/img"+time+"_.png").toPath());
+                Files.move(file.toPath(), new File("resources/failed/img"+timeFormatted+"_.png").toPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }}
             else if(result.getStatus()==ITestResult.SUCCESS){
                 try {
                     File file = camera.getScreenshotAs(OutputType.FILE);
-                    Files.move(file.toPath(), new File("resources/passed/img"+time+"_.png").toPath());
+                    Files.move(file.toPath(), new File("resources/passed/img"+timeFormatted+"_.png").toPath());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
     }
 
+//    static void main(String[] args) {
+//        LocalDateTime time = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+//        String timeFormatted = time.format(formatter);
+//        System.out.println(time);
+//        System.out.println(timeFormatted);
+//    }
 
 }
